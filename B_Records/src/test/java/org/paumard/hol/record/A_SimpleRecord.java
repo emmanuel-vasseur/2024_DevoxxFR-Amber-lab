@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,15 +16,19 @@ public class A_SimpleRecord {
      * The content of this class has just been added to make the code
      * compile. All this content should be removed when you make this class a record.
      */
-    class Population {
+    record Population(int amount) implements Comparable<Population> {
+        Population {
+            if (amount < 0)
+                throw new IllegalArgumentException();
+        }
+
         Population() {
+            this(0);
         }
 
-        Population(int amount) {
-        }
-
-        int amount() {
-            return -1;
+        @Override
+        public int compareTo(Population o) {
+            return amount - o.amount;
         }
     }
 
@@ -32,7 +37,6 @@ public class A_SimpleRecord {
      * method from it.
      */
     @Test
-    @Disabled
     public void a_record01() {
 
         Population population = new Population(10);
@@ -50,7 +54,6 @@ public class A_SimpleRecord {
      * creates a population instance with 0 people.
      */
     @Test
-    @Disabled
     public void a_record02() {
 
         Population population = new Population();
@@ -69,7 +72,6 @@ public class A_SimpleRecord {
      * Add a validation rule to enforce that.
      */
     @Test
-    @Disabled
     public void a_record03() {
 
         assertThatIllegalArgumentException()
@@ -88,7 +90,6 @@ public class A_SimpleRecord {
      * <code>Comparable&lt;Population></code> to make this test pass.
      */
     @Test
-    @Disabled
     public void a_record04() {
 
         Population p1 = new Population(90);
@@ -98,7 +99,7 @@ public class A_SimpleRecord {
         Population p5 = new Population(50);
 
         List<Population> populations = Arrays.asList(p1, p2, p3, p4, p5);
-        // populations.sort(Comparator.naturalOrder()); // TODO: uncomment this line
+        populations.sort(Comparator.naturalOrder()); // TODO: uncomment this line
 
         assertThat(populations).containsExactly(p2, p4, p5, p3, p1);
     }
