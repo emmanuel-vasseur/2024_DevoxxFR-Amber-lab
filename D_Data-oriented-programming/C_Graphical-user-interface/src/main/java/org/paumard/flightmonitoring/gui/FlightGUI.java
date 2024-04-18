@@ -1,8 +1,9 @@
 package org.paumard.flightmonitoring.gui;
 
-import org.paumard.flightmonitoring.db.model.Flight;
+import org.paumard.flightmonitoring.service.FlightGuiInterface;
+import org.paumard.flightmonitoring.model.Flight;
 
-public class FlightGUI {
+public class FlightGUI implements FlightGuiInterface {
 
     public static FlightGUI getInstance() {
         return new FlightGUI();

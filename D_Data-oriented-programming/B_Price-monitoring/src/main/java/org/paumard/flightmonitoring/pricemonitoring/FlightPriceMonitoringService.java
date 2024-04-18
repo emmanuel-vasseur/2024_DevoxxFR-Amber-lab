@@ -1,8 +1,9 @@
 package org.paumard.flightmonitoring.pricemonitoring;
 
-import org.paumard.flightmonitoring.pricemonitoring.model.FlightConsumer;
-import org.paumard.flightmonitoring.pricemonitoring.model.FlightID;
-import org.paumard.flightmonitoring.pricemonitoring.model.FlightPrice;
+import org.paumard.flightmonitoring.FlightConsumer;
+import org.paumard.flightmonitoring.model.FlightPrice;
+import org.paumard.flightmonitoring.model.FlightID;
+import org.paumard.flightmonitoring.service.FlightPriceMonitoringServiceInterface;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class FlightPriceMonitoringService {
+public class FlightPriceMonitoringService implements FlightPriceMonitoringServiceInterface {
 
     private static final Map<FlightID, FlightConsumer> registry = new HashMap<>();
 
