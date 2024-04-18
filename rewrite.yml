@@ -1,0 +1,8 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: org.myUser.MyRecipe
+displayName: My custom recipe
+description: Fix all the things.
+recipeList:
+#  - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.lang.UseTextBlocks:
+      convertStringsWithoutNewlines: "False"
